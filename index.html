@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Informativo de Uniformes</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1 class="animated fadeIn">Panel Informativo de Uniformes</h1>
+            <p class="subtitle animated fadeIn delay-1">Sistema de gestión y monitoreo de uniformes corporativos</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="dashboard">
+            <div class="card animated fadeInUp" id="inversion-departamento">
+                <div class="card-header">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <h2>Inversión por Departamento</h2>
+                </div>
+                <div class="card-body">
+                    <p>Muestra dónde se concentra el gasto en uniformes por área.</p>
+                    <div class="chart-container">
+                        <canvas id="chart-inversion"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card animated fadeInUp delay-1" id="costo-colaborador">
+                <div class="card-header">
+                    <i class="fas fa-user-tie"></i>
+                    <h2>Costo por Colaborador</h2>
+                </div>
+                <div class="card-body">
+                    <p>Evalúa la inversión individual por empleado, por departamento.</p>
+                    <div class="chart-container">
+                        <canvas id="chart-costo"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card animated fadeInUp delay-2" id="dotacion-personal">
+                <div class="card-header">
+                    <i class="fas fa-users"></i>
+                    <h2>Dotación de Personal Uniformado</h2>
+                </div>
+                <div class="card-body">
+                    <p>Número total de colaboradores uniformados por área.</p>
+                    <div class="chart-container">
+                        <canvas id="chart-personal"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card animated fadeInUp delay-3" id="uniformidad-departamento">
+                <div class="card-header">
+                    <i class="fas fa-percentage"></i>
+                    <h2>% de Uniformidad por Departamento</h2>
+                </div>
+                <div class="card-body">
+                    <p>Muestra qué porcentaje del personal de cada área ya cuenta con uniforme completo.</p>
+                    <div class="chart-container">
+                        <canvas id="chart-uniformidad"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card animated fadeInUp" id="comportamiento-mensual">
+                <div class="card-header">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h2>Comportamiento Mensual de Compra</h2>
+                </div>
+                <div class="card-body">
+                    <p>Detecta los meses con mayor o menor consumo.</p>
+                    <div class="chart-container">
+                        <canvas id="chart-mensual"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card animated fadeInUp delay-1" id="prendas-rotacion">
+                <div class="card-header">
+                    <i class="fas fa-tshirt"></i>
+                    <h2>Prendas con Mayor Rotación</h2>
+                </div>
+                <div class="card-body">
+                    <p>Identifica las prendas que más se solicitan o reponen.</p>
+                    <div class="chart-container">
+                        <canvas id="chart-prendas"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card animated fadeInUp delay-2" id="indice-reposicion">
+                <div class="card-header">
+                    <i class="fas fa-sync"></i>
+                    <h2>Índice de Reposición</h2>
+                </div>
+                <div class="card-body">
+                    <p>Cuantifica qué tanto del consumo fue por desgaste vs. dotación nueva.</p>
+                    <div class="chart-container">
+                        <canvas id="chart-reposicion"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card animated fadeInUp delay-3" id="variacion-personal">
+                <div class="card-header">
+                    <i class="fas fa-chart-line"></i>
+                    <h2>Variación de Personal Uniformado</h2>
+                </div>
+                <div class="card-body">
+                    <p>Mide si el número de colaboradores uniformados ha aumentado o disminuido durante el año.</p>
+                    <div class="chart-container">
+                        <canvas id="chart-variacion"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card animated fadeInUp" id="fecha-renovacion">
+                <div class="card-header">
+                    <i class="fas fa-clock"></i>
+                    <h2>Fecha Estimada de Renovación</h2>
+                </div>
+                <div class="card-body">
+                    <p>Proyección de futuras necesidades de compra, basada en la vida útil de cada prenda.</p>
+                    <div class="chart-container">
+                        <canvas id="chart-renovacion"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card animated fadeInUp delay-1 full-width" id="presupuesto-total">
+                <div class="card-header">
+                    <i class="fas fa-dollar-sign"></i>
+                    <h2>Monto Total Utilizado de Presupuesto</h2>
+                </div>
+                <div class="card-body">
+                    <div class="presupuesto-container">
+                        <div class="presupuesto-info">
+                            <div class="presupuesto-actual">
+                                <h3>Presupuesto Utilizado</h3>
+                                <div class="presupuesto-valor">$1,250,000</div>
+                            </div>
+                            <div class="presupuesto-total">
+                                <h3>Presupuesto Total</h3>
+                                <div class="presupuesto-valor">$2,000,000</div>
+                            </div>
+                        </div>
+                        <div class="presupuesto-barra-container">
+                            <div class="presupuesto-barra">
+                                <div class="presupuesto-progreso" style="width: 62.5%"></div>
+                            </div>
+                            <div class="presupuesto-porcentaje">62.5%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Panel Informativo de Uniformes. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="./script.js"></script>
+</body>
+
+</html>
