@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard de Análisis Departamental Completo</title>
-  <link rel="stylesheet" href="styles.css"/>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <!-- LOADING SCREEN -->
   <div class="loading-screen" id="loadingScreen">
-    <img src="https://www.uniformesprofesionales.mx/assets/upfr/logoheader.png"
-         alt="Uniformes Profesionales – UEP FR"
-         class="loading-logo">
+    <img src="https://www.uniformesprofesionales.mx/assets/upfr/logoheader.png" alt="Uniformes Profesionales – UEP FR"
+      class="loading-logo">
     <div class="loading-text">Cargando Dashboard...</div>
     <div class="loading-spinner"></div>
   </div>
@@ -21,19 +22,18 @@
     <div class="header-container">
       <a href="/" class="logo-link">
         <img src="https://www.uniformesprofesionales.mx/assets/upfr/logoheader.png"
-             alt="Uniformes Profesionales – UEP FR"
-             class="header-logo">
+          alt="Uniformes Profesionales – UEP FR" class="header-logo">
       </a>
-
       <nav class="nav-menu">
         <li class="nav-item"><a href="/" class="nav-link">Inicio</a></li>
         <li class="nav-item"><a href="/uepfr360" class="nav-link">UEPFR360</a></li>
         <li class="nav-item"><a href="/tienda" class="nav-link">Tienda</a></li>
         <li class="nav-item"><a href="/contacto" class="nav-link">Contacto</a></li>
       </nav>
-
       <div class="hamburger" id="hamburger">
-        <span></span><span></span><span></span>
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
     </div>
   </header>
@@ -50,11 +50,111 @@
   <!-- MAIN CONTENT -->
   <div class="page-header">
     <h1 class="page-title">Dashboard de Análisis Departamental Aguzvet</h1>
-    <p class="page-subtitle">Análisis integral de empleados, costos, uniformidad, rotación, variaciones y presupuesto</p>
+    <p class="page-subtitle">
+      Análisis integral de empleados, costos, uniformidad, rotación, variaciones y presupuesto
+    </p>
   </div>
 
   <div class="dashboard-container">
-    <!-- Primera fila: Empleados y Costos -->
+    <!-- Primera fila: Monto Utilizado vs Disponible -->
+    <div class="chart-container full-width-chart">
+      <h2 class="chart-title">Monto Utilizado vs Disponible</h2>
+      <div class="chart" id="budget-usage-chart">
+        <div class="bar-container">
+          <div class="garment-label">Presupuesto Total</div>
+          <div class="stacked-bar-wrapper">
+            <div class="stacked-segment used" data-percentage="60" data-amount="360000">
+              <span class="stacked-text">60%</span>
+            </div>
+            <div class="stacked-segment available" data-percentage="40" data-amount="240000">
+              <span class="stacked-text">40%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chart-footer">
+        <div style="display: flex; justify-content: center; gap: 40px; align-items: center; flex-wrap: wrap;">
+          <div>Presupuesto total: $600,000 MXN</div>
+          <div>Monto utilizado: $360,000</div>
+          <div>Monto disponible: $240,000</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Segunda fila: Gráfica de Línea Mensual -->
+    <div class="chart-container full-width-chart">
+      <h2 class="chart-title">Distribución Presupuestal Mensual 2024</h2>
+      <div class="line-chart-container" id="monthly-line-chart">
+        <svg class="line-chart-svg" viewBox="0 0 800 400">
+          <!-- Grid lines -->
+          <g class="grid">
+            <line class="grid-line" x1="80" y1="50" x2="80" y2="320"></line>
+            <line class="grid-line" x1="80" y1="320" x2="720" y2="320"></line>
+            <!-- Horizontal grid lines -->
+            <line class="grid-line" x1="80" y1="50" x2="720" y2="50"></line>
+            <line class="grid-line" x1="80" y1="118" x2="720" y2="118"></line>
+            <line class="grid-line" x1="80" y1="186" x2="720" y2="186"></line>
+            <line class="grid-line" x1="80" y1="254" x2="720" y2="254"></line>
+          </g>
+          <!-- Y-axis labels -->
+          <text class="amount-axis-label" x="75" y="325">$40k</text>
+          <text class="amount-axis-label" x="75" y="257">$45k</text>
+          <text class="amount-axis-label" x="75" y="189">$50k</text>
+          <text class="amount-axis-label" x="75" y="121">$55k</text>
+          <text class="amount-axis-label" x="75" y="53">$60k</text>
+          <!-- Line path -->
+          <path class="line-path" id="monthly-line-path" d=""></path>
+          <!-- Data points -->
+          <circle class="line-point past" cx="133" cy="278" data-month="Ene" data-amount="42000"></circle>
+          <circle class="line-point past" cx="186" cy="270" data-month="Feb" data-amount="45000"></circle>
+          <circle class="line-point past" cx="239" cy="230" data-month="Mar" data-amount="57000"></circle>
+          <circle class="line-point past" cx="292" cy="250" data-month="Abr" data-amount="50000"></circle>
+          <circle class="line-point past" cx="345" cy="256" data-month="May" data-amount="48000"></circle>
+          <circle class="line-point past" cx="398" cy="235" data-month="Jun" data-amount="55000"></circle>
+          <circle class="line-point past" cx="451" cy="274" data-month="Jul" data-amount="43000"></circle>
+          <circle class="line-point current" cx="504" cy="226" data-month="Ago" data-amount="58000"></circle>
+          <circle class="line-point future" cx="557" cy="264" data-month="Sep" data-amount="46000"></circle>
+          <circle class="line-point future" cx="610" cy="246" data-month="Oct" data-amount="51000"></circle>
+          <circle class="line-point future" cx="663" cy="236" data-month="Nov" data-amount="54000"></circle>
+          <circle class="line-point future" cx="716" cy="246" data-month="Dic" data-amount="51000"></circle>
+          <!-- X-axis labels -->
+          <text class="month-axis-label" x="133" y="340">Ene</text>
+          <text class="month-axis-label" x="186" y="340">Feb</text>
+          <text class="month-axis-label" x="239" y="340">Mar</text>
+          <text class="month-axis-label" x="292" y="340">Abr</text>
+          <text class="month-axis-label" x="345" y="340">May</text>
+          <text class="month-axis-label" x="398" y="340">Jun</text>
+          <text class="month-axis-label" x="451" y="340">Jul</text>
+          <text class="month-axis-label" x="504" y="340">Ago</text>
+          <text class="month-axis-label" x="557" y="340">Sep</text>
+          <text class="month-axis-label" x="610" y="340">Oct</text>
+          <text class="month-axis-label" x="663" y="340">Nov</text>
+          <text class="month-axis-label" x="716" y="340">Dic</text>
+        </svg>
+      </div>
+      <div class="chart-footer">
+        <div style="display: flex; justify-content: center; gap: 40px; align-items: center; flex-wrap: wrap;">
+          <div>Presupuesto anual: $600,000 MXN</div>
+          <div>Promedio mensual: $50,000</div>
+          <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap; justify-content: center;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div style="width: 12px; height: 12px; background: #ef4444; border-radius: 50%;"></div>
+              <span>Pasado</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div style="width: 12px; height: 12px; background: #f59e0b; border-radius: 50%;"></div>
+              <span>Actual</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div style="width: 12px; height: 12px; background: #10b981; border-radius: 50%;"></div>
+              <span>Futuro</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tercera fila: Empleados y Costos -->
     <div class="charts-grid">
       <!-- Gráfica de Empleados -->
       <div class="chart-container">
@@ -63,40 +163,40 @@
           <div class="bar-container">
             <div class="department-label">Administración</div>
             <div class="bar-wrapper">
-              <div class="bar administracion employees-bar" data-percentage="20">
-                <span class="bar-text">20%</span>
+              <div class="bar administracion employees-bar" data-percentage="20" data-employees="10">
+                <span class="bar-text">10</span>
               </div>
             </div>
           </div>
           <div class="bar-container">
             <div class="department-label">Recepción</div>
             <div class="bar-wrapper">
-              <div class="bar recepcion employees-bar" data-percentage="16">
-                <span class="bar-text">16%</span>
+              <div class="bar recepcion employees-bar" data-percentage="16" data-employees="8">
+                <span class="bar-text">8</span>
               </div>
             </div>
           </div>
           <div class="bar-container">
             <div class="department-label">Veterinaria</div>
             <div class="bar-wrapper">
-              <div class="bar veterinaria employees-bar" data-percentage="40">
-                <span class="bar-text">40%</span>
+              <div class="bar veterinaria employees-bar" data-percentage="40" data-employees="20">
+                <span class="bar-text">20</span>
               </div>
             </div>
           </div>
           <div class="bar-container">
             <div class="department-label">Mantenimiento</div>
             <div class="bar-wrapper">
-              <div class="bar mantenimiento employees-bar" data-percentage="12">
-                <span class="bar-text">12%</span>
+              <div class="bar mantenimiento employees-bar" data-percentage="12" data-employees="6">
+                <span class="bar-text">6</span>
               </div>
             </div>
           </div>
           <div class="bar-container">
             <div class="department-label">Estética</div>
             <div class="bar-wrapper">
-              <div class="bar estetica employees-bar" data-percentage="12">
-                <span class="bar-text">12%</span>
+              <div class="bar estetica employees-bar" data-percentage="12" data-employees="6">
+                <span class="bar-text">6</span>
               </div>
             </div>
           </div>
@@ -112,15 +212,15 @@
             <div class="department-label">Administración</div>
             <div class="bar-wrapper">
               <div class="bar administracion costs-bar" data-percentage="25" data-amount="150000">
-                <span class="bar-text">25%</span>
+                <span class="bar-text"><b>$150,000</b></span>
               </div>
             </div>
           </div>
           <div class="bar-container">
             <div class="department-label">Recepción</div>
             <div class="bar-wrapper">
-              <div class="bar recepcion costs-bar" data-percentage="12" data-amount="72000">
-                <span class="bar-text">12%</span>
+              <div class="bar recepcion costs-bar" data-percentage="20" data-amount="72000">
+                <span class="bar-text">$72,000</span>
               </div>
             </div>
           </div>
@@ -128,23 +228,23 @@
             <div class="department-label">Veterinaria</div>
             <div class="bar-wrapper">
               <div class="bar veterinaria costs-bar" data-percentage="40" data-amount="240000">
-                <span class="bar-text">40%</span>
+                <span class="bar-text">$240,000</span>
               </div>
             </div>
           </div>
           <div class="bar-container">
             <div class="department-label">Mantenimiento</div>
             <div class="bar-wrapper">
-              <div class="bar mantenimiento costs-bar" data-percentage="13" data-amount="78000">
-                <span class="bar-text">13%</span>
+              <div class="bar mantenimiento costs-bar" data-percentage="18" data-amount="78000">
+                <span class="bar-text">$78,000</span>
               </div>
             </div>
           </div>
           <div class="bar-container">
             <div class="department-label">Estética</div>
             <div class="bar-wrapper">
-              <div class="bar estetica costs-bar" data-percentage="10" data-amount="60000">
-                <span class="bar-text">10%</span>
+              <div class="bar estetica costs-bar" data-percentage="16" data-amount="60000">
+                <span class="bar-text">$60,000</span>
               </div>
             </div>
           </div>
@@ -153,9 +253,9 @@
       </div>
     </div>
 
-    <!-- Segunda fila: Prendas y Reposición Circular -->
+    <!-- Cuarta fila: Prendas y Reposición Circular -->
     <div class="charts-grid">
-      <!-- Prendas con Mayor Rotación -->
+      <!-- Gráfica de Prendas con Mayor Rotación -->
       <div class="chart-container">
         <h2 class="chart-title">Prendas con Mayor Rotación</h2>
         <div class="chart" id="garments-chart">
@@ -195,24 +295,23 @@
         <div class="chart-footer">Total de unidades: 266</div>
       </div>
 
-      <!-- Circular: Índice de Reposición -->
+      <!-- Gráfica Circular de Índice de Reposición -->
       <div class="chart-container">
         <h2 class="chart-title">Índice de Reposición vs Nueva Dotación</h2>
         <div class="circular-chart-container">
           <div class="large-circular-chart" id="reposition-circular-chart">
             <svg viewBox="0 0 200 200">
               <circle class="circle-bg" cx="100" cy="100" r="80"></circle>
-              <circle class="circle-segment reposition-segment" cx="100" cy="100" r="80"
-                      stroke-dasharray="0 628" data-percentage="8"></circle>
-              <circle class="circle-segment new-allocation-segment" cx="100" cy="100" r="80"
-                      stroke-dasharray="0 628" data-percentage="92" data-offset="8"></circle>
+              <circle class="circle-segment reposition-segment" cx="100" cy="100" r="80" stroke-dasharray="0 628"
+                data-percentage="8"></circle>
+              <circle class="circle-segment new-allocation-segment" cx="100" cy="100" r="80" stroke-dasharray="0 628"
+                data-percentage="92" data-offset="8"></circle>
             </svg>
             <div class="center-text">
               <span class="total-amount">$600,000</span>
               <span class="total-label">Total</span>
             </div>
           </div>
-
           <div class="reposition-legend">
             <div class="legend-item">
               <div class="legend-color reposition"></div>
@@ -228,367 +327,270 @@
       </div>
     </div>
 
-    <!-- Tercera fila: Variación y Renovación -->
+    <!-- Quinta fila: Variación y Renovación -->
     <div class="charts-grid-two">
-      <!-- Variación de Personal -->
+      <!-- Gráfica de Variación de Personal -->
       <div class="chart-container">
-        <h2 class="chart-title">Variación de Personal</h2>
+        <h2 class="chart-title">Variación de Personal Uniformado (Altas y Bajas)</h2>
+
         <div class="chart" id="variation-chart">
-          <div class="bar-container">
-            <div class="department-label">Administración</div>
-            <div class="variation-bar-wrapper">
-              <div class="variation-bar negative variation-bar-item" data-variation="-1">
-                <span class="variation-text">-1</span>
-              </div>
+          <!-- Recepción: +3 -->
+          <div class="variation-row" data-inc="9" data-dec="1">
+            <div class="department-label">Amdministracion</div>
+            <div class="variation-display">
+              <!-- Neto de referencia (no se muestra; el JS lo usa si faltan inc/dec) -->
+              <div class="variation-badge positive" data-variation="+3">+3</div>
+              <div class="current-count" data-current="11">11</div>
             </div>
           </div>
-          <div class="bar-container">
-            <div class="department-label">Recepción</div>
-            <div class="variation-bar-wrapper">
-              <div class="variation-bar neutral variation-bar-item" data-variation="0">
-                <span class="variation-text">0</span>
-              </div>
-            </div>
-          </div>
-          <div class="bar-container">
-            <div class="department-label">Veterinaria</div>
-            <div class="variation-bar-wrapper">
-              <div class="variation-bar positive variation-bar-item" data-variation="+2">
-                <span class="variation-text">+2</span>
-              </div>
-            </div>
-          </div>
-          <div class="bar-container">
+
+          <!-- Mantenimiento: +6 -->
+          <div class="variation-row" data-inc="6" data-dec="2">
             <div class="department-label">Mantenimiento</div>
-            <div class="variation-bar-wrapper">
-              <div class="variation-bar negative variation-bar-item" data-variation="-1">
-                <span class="variation-text">-1</span>
-              </div>
+            <div class="variation-display">
+              <div class="variation-badge positive" data-variation="+6">-2</div>
+              <div class="current-count" data-current="12">12</div>
             </div>
           </div>
-          <div class="bar-container">
+
+          <!-- Médico veterinario: +4 -->
+          <div class="variation-row" data-inc="20" data-dec="0">
+            <div class="department-label">Médico veterinario</div>
+            <div class="variation-display">
+              <div class="variation-badge positive" data-variation="+4"></div>
+              <div class="current-count" data-current="24">24</div>
+            </div>
+          </div>
+
+          <!-- Estética: -1 y +2 (ambos lados a la vez) -->
+          <div class="variation-row" data-inc="4" data-dec="2">
             <div class="department-label">Estética</div>
-            <div class="variation-bar-wrapper">
-              <div class="variation-bar positive variation-bar-item" data-variation="+2">
-                <span class="variation-text">+2</span>
-              </div>
+            <div class="variation-display">
+              <div class="variation-badge neutral" data-variation="-2">-2</div>
+              <div class="current-count" data-current="10">10</div>
+            </div>
+          </div>
+
+          <!-- Administración: -2 -->
+          <div class="variation-row" data-inc="5" data-dec="1">
+            <div class="department-label">Administración</div>
+            <div class="variation-display">
+              <div class="variation-badge negative" data-variation="-1">- </div>
+              <div class="current-count" data-current="8">8</div>
             </div>
           </div>
         </div>
 
+        <!-- Leyenda -->
         <div class="chart-footer">
           <div style="display:flex;justify-content:center;gap:20px;align-items:center;flex-wrap:wrap;">
             <div style="display:flex;align-items:center;gap:5px;">
-              <div style="width:15px;height:15px;background:linear-gradient(90deg,#1d4ed8,#1e40af);border-radius:3px;"></div>
-              <span>Incremento</span>
+              <div style="width:15px;height:15px;background:linear-gradient(90deg,#1d4ed8,#0b5bd3);border-radius:3px;">
+              </div>
+              <span>Altas</span>
             </div>
             <div style="display:flex;align-items:center;gap:5px;">
-              <div style="width:15px;height:15px;background:linear-gradient(90deg,#60a5fa,#93c5fd);border-radius:3px;"></div>
+              <div style="width:15px;height:15px;background:linear-gradient(90deg,#ef4444,#dc2626);border-radius:3px;">
+              </div>
+              <span>Bajas</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:5px;">
+              <div
+                style="width:15px;height:15px;background:#eef2f7;border-radius:3px;border:1px solid rgba(55,65,81,.2)">
+              </div>
               <span>Sin cambio</span>
             </div>
-            <div style="display:flex;align-items:center;gap:5px;">
-              <div style="width:15px;height:15px;background:linear-gradient(90deg,#6b7280,#9ca3af);border-radius:3px;"></div>
-              <span>Decremento</span>
-            </div>
           </div>
         </div>
       </div>
 
-      <!-- Renovación Bimestral -->
-      <div class="chart-container">
-        <h2 class="chart-title">Renovación Bimestral Estimada</h2>
-        <div class="chart" id="bimester-chart">
-          <div class="bar-container">
-            <div class="bimester-label">Bimestre 1</div>
-            <div class="bar-wrapper">
-              <div class="bar bimester bimester-bar" data-percentage="16" data-employees="8" data-total="50">
-                <span class="bar-text">16%</span>
-              </div>
-            </div>
-          </div>
-          <div class="bar-container">
-            <div class="bimester-label">Bimestre 2</div>
-            <div class="bar-wrapper">
-              <div class="bar bimester bimester-bar" data-percentage="14" data-employees="7" data-total="50">
-                <span class="bar-text">12%</span>
-              </div>
-            </div>
-          </div>
-          <div class="bar-container">
-            <div class="bimester-label">Bimestre 3</div>
-            <div class="bar-wrapper">
-              <div class="bar bimester bimester-bar" data-percentage="20" data-employees="10" data-total="50">
-                <span class="bar-text">10%</span>
-              </div>
-            </div>
-          </div>
-          <div class="bar-container">
-            <div class="bimester-label">Bimestre 4</div>
-            <div class="bar-wrapper">
-              <div class="bar bimester bimester-bar" data-percentage="18" data-employees="9" data-total="50">
-                <span class="bar-text">10%</span>
-              </div>
-            </div>
-          </div>
-          <div class="bar-container">
-            <div class="bimester-label">Bimestre 5</div>
-            <div class="bar-wrapper">
-              <div class="bar bimester bimester-bar" data-percentage="16" data-employees="8" data-total="50">
-                <span class="bar-text">6%</span>
-              </div>
-            </div>
-          </div>
-          <div class="bar-container">
-            <div class="bimester-label">Bimestre 6</div>
-            <div class="bar-wrapper">
-              <div class="bar bimester bimester-bar" data-percentage="16" data-employees="8" data-total="50">
-                <span class="bar-text">10%</span>
-              </div>
-            </div>
+      <!-- Gráfica de Proximidad de Renovación -->
+<div class="chart-container" id="renovation-proximity-chart">
+  <h2 class="chart-title">Proximidad de Renovación por Departamento</h2>
+  <div id="renovationList"></div>
+  <div class="renovation-legend" style="margin-top:30px;">
+    <span class="renovation-dot urgent"></span> <span>Próximos a adquirir</span>
+    <span class="renovation-dot warning" style="margin-left:15px;"></span> <span>Compra cercana</span>
+    <span class="renovation-dot safe" style="margin-left:15px;"></span> <span>Planifica la compra</span>
+  </div>
+</div>
+
+  <!-- Sexta fila: Uniformidad Mejorada -->
+  <div class="chart-container full-width-chart">
+    <h2 class="chart-title">% de Uniformidad por Departamento</h2>
+    <div class="uniformity-container" id="uniformity-container">
+      <div class="uniformity-item">
+        <div class="uniformity-icon excellent">8/8</div>
+        <div class="uniformity-info">
+          <div class="uniformity-department">Recepción</div>
+          <div class="uniformity-progress-wrapper">
+            <div class="uniformity-progress excellent" data-percentage="100"></div>
           </div>
         </div>
-        <div class="chart-footer">Total de empleados a renovar: 50 empleados/año</div>
+        <div class="uniformity-percentage">100%</div>
       </div>
-    </div>
-
-    <!-- Cuarta fila: % de Uniformidad -->
-    <div class="chart-container full-width-chart">
-      <h2 class="chart-title">% de Uniformidad por Departamento</h2>
-      <div class="uniformity-container" id="uniformity-container">
-        <div class="uniformity-item">
-          <div class="uniformity-icon excellent">100%</div>
-          <div class="uniformity-info">
-            <div class="uniformity-department">Recepción</div>
-            <div class="uniformity-stats">8 de 8 empleados uniformados</div>
-            <div class="uniformity-progress-wrapper">
-              <div class="uniformity-progress excellent" data-percentage="100"></div>
-            </div>
+      <div class="uniformity-item">
+        <div class="uniformity-icon excellent">6/6</div>
+        <div class="uniformity-info">
+          <div class="uniformity-department">Estética</div>
+          <div class="uniformity-progress-wrapper">
+            <div class="uniformity-progress excellent" data-percentage="100"></div>
           </div>
-          <div class="uniformity-percentage">100%</div>
         </div>
-
-        <div class="uniformity-item">
-          <div class="uniformity-icon excellent">100%</div>
-          <div class="uniformity-info">
-            <div class="uniformity-department">Estética</div>
-            <div class="uniformity-stats">6 de 6 empleados uniformados</div>
-            <div class="uniformity-progress-wrapper">
-              <div class="uniformity-progress excellent" data-percentage="100"></div>
-            </div>
-          </div>
-          <div class="uniformity-percentage">100%</div>
-        </div>
-
-        <div class="uniformity-item">
-          <div class="uniformity-icon good">95%</div>
-          <div class="uniformity-info">
-            <div class="uniformity-department">Veterinaria</div>
-            <div class="uniformity-stats">19 de 20 empleados uniformados</div>
-            <div class="uniformity-progress-wrapper">
-              <div class="uniformity-progress good" data-percentage="95"></div>
-            </div>
-          </div>
-          <div class="uniformity-percentage">95%</div>
-        </div>
-
-        <div class="uniformity-item">
-          <div class="uniformity-icon good">83%</div>
-          <div class="uniformity-info">
-            <div class="uniformity-department">Mantenimiento</div>
-            <div class="uniformity-stats">5 de 6 empleados uniformados</div>
-            <div class="uniformity-progress-wrapper">
-              <div class="uniformity-progress good" data-percentage="83"></div>
-            </div>
-          </div>
-          <div class="uniformity-percentage">83%</div>
-        </div>
-
-        <div class="uniformity-item">
-          <div class="uniformity-icon good">80%</div>
-          <div class="uniformity-info">
-            <div class="uniformity-department">Administración</div>
-            <div class="uniformity-stats">8 de 10 empleados uniformados</div>
-            <div class="uniformity-progress-wrapper">
-              <div class="uniformity-progress good" data-percentage="80"></div>
-            </div>
-          </div>
-          <div class="uniformity-percentage">80%</div>
-        </div>
+        <div class="uniformity-percentage">100%</div>
       </div>
-
-      <div class="chart-footer">
-        <div style="display:flex;justify-content:center;gap:30px;align-items:center;flex-wrap:wrap;">
-          <div><span class="uniformity-indicator uniformity-excellent"></span><span style="margin-left:5px;">Excelente (≥95%)</span></div>
-          <div><span class="uniformity-indicator uniformity-good"></span><span style="margin-left:5px;">Bueno (80-94%)</span></div>
-          <div><span class="uniformity-indicator uniformity-needs-improvement"></span><span style="margin-left:5px;">Necesita mejora (&lt;80%)</span></div>
+      <div class="uniformity-item">
+        <div class="uniformity-icon good">19/20</div>
+        <div class="uniformity-info">
+          <div class="uniformity-department">Veterinaria</div>
+          <div class="uniformity-progress-wrapper">
+            <div class="uniformity-progress good" data-percentage="95"></div>
+          </div>
         </div>
+        <div class="uniformity-percentage">95%</div>
+      </div>
+      <div class="uniformity-item">
+        <div class="uniformity-icon good">5/6</div>
+        <div class="uniformity-info">
+          <div class="uniformity-department">Mantenimiento</div>
+          <div class="uniformity-progress-wrapper">
+            <div class="uniformity-progress good" data-percentage="83"></div>
+          </div>
+        </div>
+        <div class="uniformity-percentage">83%</div>
+      </div>
+      <div class="uniformity-item">
+        <div class="uniformity-icon good">8/10</div>
+        <div class="uniformity-info">
+          <div class="uniformity-department">Administración</div>
+          <div class="uniformity-progress-wrapper">
+            <div class="uniformity-progress good" data-percentage="80"></div>
+          </div>
+        </div>
+        <div class="uniformity-percentage">80%</div>
       </div>
     </div>
-
-    <!-- Quinta fila: Análisis Detallado -->
-    <div class="chart-container full-width-chart">
-      <h2 class="chart-title">Análisis Detallado de Uniformidad</h2>
-      <div class="detailed-analysis">
-        <div class="analysis-main">
-          <div class="analysis-item">
-            <div class="analysis-icon excellent">100%</div>
-            <div class="analysis-content">
-              <div class="analysis-department">Recepción</div>
-              <div class="analysis-details">8 de 8 empleados • Cumplimiento total • Sin necesidad de acción</div>
-              <div class="analysis-progress-wrapper"><div class="analysis-progress excellent" data-percentage="100"></div></div>
-            </div>
-            <div class="analysis-percentage">100%</div>
-          </div>
-
-          <div class="analysis-item">
-            <div class="analysis-icon excellent">100%</div>
-            <div class="analysis-content">
-              <div class="analysis-department">Estética</div>
-              <div class="analysis-details">6 de 6 empleados • Cumplimiento total • Mantener estándares</div>
-              <div class="analysis-progress-wrapper"><div class="analysis-progress excellent" data-percentage="100"></div></div>
-            </div>
-            <div class="analysis-percentage">100%</div>
-          </div>
-
-          <div class="analysis-item">
-            <div class="analysis-icon good">95%</div>
-            <div class="analysis-content">
-              <div class="analysis-department">Veterinaria</div>
-              <div class="analysis-details">19 de 20 empleados • 1 empleado sin uniforme • Seguimiento requerido</div>
-              <div class="analysis-progress-wrapper"><div class="analysis-progress good" data-percentage="95"></div></div>
-            </div>
-            <div class="analysis-percentage">95%</div>
-          </div>
-
-          <div class="analysis-item">
-            <div class="analysis-icon good">83%</div>
-            <div class="analysis-content">
-              <div class="analysis-department">Mantenimiento</div>
-              <div class="analysis-details">5 de 6 empleados • 1 empleado sin uniforme • Acción inmediata</div>
-              <div class="analysis-progress-wrapper"><div class="analysis-progress good" data-percentage="83"></div></div>
-            </div>
-            <div class="analysis-percentage">83%</div>
-          </div>
-
-          <div class="analysis-item">
-            <div class="analysis-icon good">80%</div>
-            <div class="analysis-content">
-              <div class="analysis-department">Administración</div>
-              <div class="analysis-details">8 de 10 empleados • 2 empleados sin uniforme • Plan de mejora</div>
-              <div class="analysis-progress-wrapper"><div class="analysis-progress good" data-percentage="80"></div></div>
-            </div>
-            <div class="analysis-percentage">80%</div>
-          </div>
+    <div class="chart-footer">
+      <div style="display: flex; justify-content: center; gap: 30px; align-items: center; flex-wrap: wrap;">
+        <div>
+          <span class="uniformity-indicator uniformity-excellent"></span>
+          <span style="margin-left: 5px;">Excelente (≥95%)</span>
         </div>
-
-        <div class="analysis-summary">
-          <div class="summary-title">Resumen Ejecutivo</div>
-          <div class="summary-stats">
-            <div class="summary-stat"><span class="stat-number">91.6%</span><div class="stat-label">Promedio General</div></div>
-            <div class="summary-stat"><span class="stat-number">46/50</span><div class="stat-label">Empleados Uniformados</div></div>
-            <div class="summary-stat"><span class="stat-number">2</span><div class="stat-label">Departamentos 100%</div></div>
-            <div class="summary-stat"><span class="stat-number">4</span><div class="stat-label">Empleados Pendientes</div></div>
-          </div>
-          <div class="summary-recommendation">
-            <strong>Recomendación:</strong> Enfocar esfuerzos en Administración (2 empleados) y realizar seguimiento individual en Veterinaria y Mantenimiento. Mantener los altos estándares en Recepción y Estética.
-          </div>
+        <div>
+          <span class="uniformity-indicator uniformity-good"></span>
+          <span style="margin-left: 5px;">Bueno (80-94%)</span>
         </div>
-      </div>
-    </div>
-
-    <!-- Sexta fila: Gráfica de Línea Mensual -->
-    <div class="chart-container full-width-chart">
-      <h2 class="chart-title">Distribución Presupuestal Mensual 2024</h2>
-      <div class="line-chart-container" id="monthly-line-chart">
-        <svg class="line-chart-svg" viewBox="0 0 800 400">
-          <g class="grid">
-            <line class="grid-line" x1="80" y1="50" x2="80" y2="320"></line>
-            <line class="grid-line" x1="80" y1="320" x2="720" y2="320"></line>
-            <line class="grid-line" x1="80" y1="50" x2="720" y2="50"></line>
-            <line class="grid-line" x1="80" y1="118" x2="720" y2="118"></line>
-            <line class="grid-line" x1="80" y1="186" x2="720" y2="186"></line>
-            <line class="grid-line" x1="80" y1="254" x2="720" y2="254"></line>
-          </g>
-
-          <!-- Y-axis labels -->
-          <text class="amount-axis-label" x="75" y="325">$40k</text>
-          <text class="amount-axis-label" x="75" y="257">$45k</text>
-          <text class="amount-axis-label" x="75" y="189">$50k</text>
-          <text class="amount-axis-label" x="75" y="121">$55k</text>
-          <text class="amount-axis-label" x="75" y="53">$60k</text>
-
-          <!-- Line path -->
-          <path class="line-path" id="monthly-line-path" d=""></path>
-
-          <!-- Data points -->
-          <circle class="line-point past" cx="133" cy="278" data-month="Ene" data-amount="42000"></circle>
-          <circle class="line-point past" cx="186" cy="270" data-month="Feb" data-amount="45000"></circle>
-          <circle class="line-point past" cx="239" cy="230" data-month="Mar" data-amount="57000"></circle>
-          <circle class="line-point past" cx="292" cy="250" data-month="Abr" data-amount="50000"></circle>
-          <circle class="line-point past" cx="345" cy="256" data-month="May" data-amount="48000"></circle>
-          <circle class="line-point past" cx="398" cy="235" data-month="Jun" data-amount="55000"></circle>
-          <circle class="line-point past" cx="451" cy="274" data-month="Jul" data-amount="43000"></circle>
-          <circle class="line-point current" cx="504" cy="226" data-month="Ago" data-amount="58000"></circle>
-          <circle class="line-point future" cx="557" cy="264" data-month="Sep" data-amount="46000"></circle>
-          <circle class="line-point future" cx="610" cy="246" data-month="Oct" data-amount="51000"></circle>
-          <circle class="line-point future" cx="663" cy="236" data-month="Nov" data-amount="54000"></circle>
-          <circle class="line-point future" cx="716" cy="246" data-month="Dic" data-amount="51000"></circle>
-
-          <!-- X-axis labels -->
-          <text class="month-axis-label" x="133" y="340">Ene</text>
-          <text class="month-axis-label" x="186" y="340">Feb</text>
-          <text class="month-axis-label" x="239" y="340">Mar</text>
-          <text class="month-axis-label" x="292" y="340">Abr</text>
-          <text class="month-axis-label" x="345" y="340">May</text>
-          <text class="month-axis-label" x="398" y="340">Jun</text>
-          <text class="month-axis-label" x="451" y="340">Jul</text>
-          <text class="month-axis-label" x="504" y="340">Ago</text>
-          <text class="month-axis-label" x="557" y="340">Sep</text>
-          <text class="month-axis-label" x="610" y="340">Oct</text>
-          <text class="month-axis-label" x="663" y="340">Nov</text>
-          <text class="month-axis-label" x="716" y="340">Dic</text>
-        </svg>
-      </div>
-
-      <div class="chart-footer">
-        <div style="display:flex;justify-content:center;gap:40px;align-items:center;flex-wrap:wrap;">
-          <div>Presupuesto anual: $600,000 MXN</div>
-          <div>Promedio mensual: $50,000</div>
-          <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;justify-content:center;">
-            <div style="display:flex;align-items:center;gap:8px;"><div style="width:12px;height:12px;background:#ef4444;border-radius:50%;"></div><span>Pasado</span></div>
-            <div style="display:flex;align-items:center;gap:8px;"><div style="width:12px;height:12px;background:#f59e0b;border-radius:50%;"></div><span>Actual</span></div>
-            <div style="display:flex;align-items:center;gap:8px;"><div style="width:12px;height:12px;background:#10b981;border-radius:50%;"></div><span>Futuro</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Séptima fila: Monto Utilizado vs Disponible -->
-    <div class="chart-container full-width-chart">
-      <h2 class="chart-title">Monto Utilizado vs Disponible</h2>
-      <div class="chart" id="budget-usage-chart">
-        <div class="bar-container">
-          <div class="garment-label">Presupuesto Total</div>
-          <div class="stacked-bar-wrapper">
-            <div class="stacked-segment used" data-percentage="60" data-amount="360000">
-              <span class="stacked-text">60%</span>
-            </div>
-            <div class="stacked-segment available" data-percentage="40" data-amount="240000">
-              <span class="stacked-text">40%</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="chart-footer">
-        <div style="display:flex;justify-content:center;gap:40px;align-items:center;flex-wrap:wrap;">
-          <div>Presupuesto total: $600,000 MXN</div>
-          <div>Monto utilizado: $360,000</div>
-          <div>Monto disponible: $240,000</div>
+        <div>
+          <span class="uniformity-indicator uniformity-needs-improvement"></span>
+          <span style="margin-left: 5px;">Necesita mejora -80% </span>
         </div>
       </div>
     </div>
   </div>
 
-  <script src="app.js" defer></script>
+  <!-- Séptima fila: Análisis Detallado Mejorado -->
+  <div class="chart-container full-width-chart">
+    <h2 class="chart-title">Análisis Detallado de Uniformidad</h2>
+    <div class="detailed-analysis">
+      <div class="analysis-main">
+        <div class="analysis-item">
+          <div class="analysis-icon excellent">100%</div>
+          <div class="analysis-content">
+            <div class="analysis-department">Recepción</div>
+            <div class="analysis-details">Cumplimiento total • Sin necesidad de
+              acción</div>
+            <div class="analysis-progress-wrapper">
+              <div class="analysis-progress excellent" data-percentage="100"></div>
+            </div>
+          </div>
+          <div class="analysis-percentage">8/8</div>
+        </div>
+        <div class="analysis-item">
+          <div class="analysis-icon excellent">100%</div>
+          <div class="analysis-content">
+            <div class="analysis-department">Estética</div>
+            <div class="analysis-details">Cumplimiento total • Mantener estándares
+            </div>
+            <div class="analysis-progress-wrapper">
+              <div class="analysis-progress excellent" data-percentage="100"></div>
+            </div>
+          </div>
+          <div class="analysis-percentage">6/6</div>
+        </div>
+        <div class="analysis-item">
+          <div class="analysis-icon good">95%</div>
+          <div class="analysis-content">
+            <div class="analysis-department">Veterinaria</div>
+            <div class="analysis-details">1 empleado sin uniforme • Seguimiento
+              requerido</div>
+            <div class="analysis-progress-wrapper">
+              <div class="analysis-progress good" data-percentage="95"></div>
+            </div>
+          </div>
+          <div class="analysis-percentage">19/20</div>
+        </div>
+        <div class="analysis-item">
+          <div class="analysis-icon good">83%</div>
+          <div class="analysis-content">
+            <div class="analysis-department">Mantenimiento</div>
+            <div class="analysis-details">1 empleado sin uniforme • Acción inmediata
+            </div>
+            <div class="analysis-progress-wrapper">
+              <div class="analysis-progress good" data-percentage="83"></div>
+            </div>
+          </div>
+          <div class="analysis-percentage">5/6</div>
+        </div>
+        <div class="analysis-item">
+          <div class="analysis-icon good">80%</div>
+          <div class="analysis-content">
+            <div class="analysis-department">Administración</div>
+            <div class="analysis-details">2 empleados sin uniforme • Plan de mejora
+            </div>
+            <div class="analysis-progress-wrapper">
+              <div class="analysis-progress good" data-percentage="80"></div>
+            </div>
+          </div>
+          <div class="analysis-percentage">8/10</div>
+        </div>
+      </div>
+      <div class="analysis-summary">
+        <div class="summary-title">Resumen Ejecutivo</div>
+        <div class="summary-stats">
+          <div class="summary-stat">
+            <span class="stat-number">91.6%</span>
+            <div class="stat-label">Promedio General</div>
+          </div>
+          <div class="summary-stat">
+            <span class="stat-number">46/50</span>
+            <div class="stat-label">Empleados Uniformados</div>
+          </div>
+          <div class="summary-stat">
+            <span class="stat-number">2</span>
+            <div class="stat-label">Departamentos 100%</div>
+          </div>
+          <div class="summary-stat">
+            <span class="stat-number">4</span>
+            <div class="stat-label">Empleados Pendientes</div>
+          </div>
+        </div>
+        <div class="summary-recommendation">
+          <strong>Recomendación:</strong> Enfocar esfuerzos en Administración (2 empleados) y realizar
+          seguimiento individual en Veterinaria y Mantenimiento. Mantener los altos estándares en
+          Recepción y Estética.
+              <div style="width:100%;display:flex;justify-content:center;align-items:flex-end;margin-top:30px;">
+  <img src="img/bot.png" alt="Bot Asistente" style="height:80px;max-width:160px;object-fit:contain;filter:drop-shadow(0 4px 18px rgba(30,64,175,0.10));">
+</div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+
+  </div>
+
+  <script src="script.js"></script>
 </body>
+
 </html>
