@@ -25,7 +25,7 @@ window.addEventListener('load', function() {
 const renovationsData = [
   { dept: 'Administración',   month: 'Sep' },
   { dept: 'Recepción',        month: 'Sep' },
-  { dept: 'MED. VETERIANRIO', month: 'Oct' },
+  { dept: 'Med. Veterinaria', month: 'Oct' },
   { dept: 'Mantenimiento',    month: 'Nov' },
   { dept: 'Estética',         month: 'Nov' }
 ];
@@ -124,10 +124,10 @@ const monthlyLineData = [
   { month: 'Jun', amount: 55000, x: 398, y: 235, status: 'past' },
   { month: 'Jul', amount: 43000, x: 451, y: 274, status: 'past' },
   { month: 'Ago', amount: 58000, x: 504, y: 226, status: 'current' },
-  { month: 'Sep', amount: 46000, x: 557, y: 264, status: 'future' },
-  { month: 'Oct', amount: 51000, x: 610, y: 246, status: 'future' },
-  { month: 'Nov', amount: 54000, x: 663, y: 236, status: 'future' },
-  { month: 'Dic', amount: 51000, x: 716, y: 246, status: 'future' }
+  { month: 'Sep', amount: 0, x: 557, y: 320, status: 'future' },
+  { month: 'Oct', amount: 0, x: 610, y: 320, status: 'future' },
+  { month: 'Nov', amount: 0, x: 663, y: 320, status: 'future' },
+  { month: 'Dic', amount: 0, x: 716, y: 320, status: 'future' }
 ];
 
 /* ============================================================
